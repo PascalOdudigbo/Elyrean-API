@@ -18,11 +18,17 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 
 development:
   <<: *default
-  database: elyrean_api_development
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+  port: <%= ENV.fetch("DATABASE_PORT", 5432) %>
+  database: <%= ENV.fetch("DATABASE_NAME", "elyrean_api_development") %>
+  username: <%= ENV.fetch("DATABASE_USER", "postgres") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "") %>
+  sslmode: <%= ENV.fetch("DATABASE_SSL_MODE", "prefer") %>
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -77,22 +83,33 @@ test:
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
-#
+
+
+
+# production:
+#   primary: &primary_production
+#     <<: *default
+#     database: elyrean_api_production
+#     username: elyrean_api
+#     password: <%= ENV["ELYREAN_API_DATABASE_PASSWORD"] %>
+#   cache:
+#     <<: *primary_production
+#     database: elyrean_api_production_cache
+#     migrations_paths: db/cache_migrate
+#   queue:
+#     <<: *primary_production
+#     database: elyrean_api_production_queue
+#     migrations_paths: db/queue_migrate
+#   cable:
+#     <<: *primary_production
+#     database: elyrean_api_production_cable
+#     migrations_paths: db/cable_migrate
+
 production:
-  primary: &primary_production
-    <<: *default
-    database: elyrean_api_production
-    username: elyrean_api
-    password: <%= ENV["ELYREAN_API_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    database: elyrean_api_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: elyrean_api_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: elyrean_api_production_cable
-    migrations_paths: db/cable_migrate
+  <<: *default
+  host: <%= ENV.fetch("DATABASE_HOST") %>
+  port: <%= ENV.fetch("DATABASE_PORT") %>
+  database: <%= ENV.fetch("DATABASE_NAME") %>
+  username: <%= ENV.fetch("DATABASE_USER") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+  sslmode: <%= ENV.fetch("DATABASE_SSL_MODE", "require") %>
