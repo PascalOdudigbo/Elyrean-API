@@ -2,9 +2,10 @@ class Discount < ApplicationRecord
     has_many :discount_products, dependent: :destroy
     has_many :products, through: :discount_products
 
-    validates: :name, :discount_precent, :valid_from, :valid_until, presence: true
-    vaidates: :discount_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
-    validate :valid_until_after_valid_from
+    validates :name, :discount_percent, :valid_from, :valid_until, presence: true
+    validates :image_url, :image_public_id, presence: true
+    validates :discount_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+    validates :valid_until_after_valid_from
 
     private
 

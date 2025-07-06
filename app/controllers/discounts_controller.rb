@@ -1,5 +1,5 @@
 class DiscountsController < ApplicationController
-  before_action :get_discount, only: [:show, :update, :destroy]
+  before_action :set_discount, only: [:show, :update, :destroy]
 
   def index
     @discounts = Discount.all
@@ -11,7 +11,7 @@ class DiscountsController < ApplicationController
   end
 
   def create
-    @discount = discount.new(discount_params)
+    @discount = Discount.new(discount_params)
     if @discount.save
       render json: @discount, status: :created, location: @discount
     else
@@ -34,13 +34,13 @@ class DiscountsController < ApplicationController
 
   private
 
-  def get_discount
+  def set_discount
     @discount = Discount.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    render json: {error: "Discount not fount!"}, status: :not_found
+    render json: {error: "Discount not found!"}, status: :not_found
   end
 
   def discount_params
-    params.require(:discount).premit(:name, :description, :discount_percent, :valid_from, :valid_until)
+    params.require(:discount).permit(:name, :description, :discount_percent, :image_url, :image_public_id, :valid_from, :valid_until)
   end
 end

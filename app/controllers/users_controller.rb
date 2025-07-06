@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    render json: @user, include: [:role, :artist_profile] # Include the relevant associations
+    render json: @users, include: [:role, :artist_profile] # Include the relevant associations
   end
 
   def show

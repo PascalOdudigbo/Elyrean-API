@@ -18,5 +18,4 @@ class Product < ApplicationRecord
   validates :category, presence: true
   validates :collection, presence: true
   validates :artist, presence: true
-  validates :active, presence: true
 end

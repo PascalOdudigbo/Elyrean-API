@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order: one
+  amount: 9.99
+  reason: MyText
+  status: MyString
+  stripe_refund_id: MyString
+  approved_by: 1
+  approved_at: 2025-06-28 09:16:08
+
+two:
+  order: two
+  amount: 9.99
+  reason: MyText
+  status: MyString
+  stripe_refund_id: MyString
+  approved_by: 1
+  approved_at: 2025-06-28 09:16:08
