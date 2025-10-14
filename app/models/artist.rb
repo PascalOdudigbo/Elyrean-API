@@ -1,4 +1,5 @@
 class Artist < ApplicationRecord
+  self.primary_key = :user_id
   belongs_to :user # Artist "is a" User
   has_many :products, foreign_key: 'artist_id', dependent: :nullify # Products lose artists if artist is deleted, not cascade
 

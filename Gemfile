@@ -47,4 +47,7 @@ group :development, :test do
 
   # Load environment variables from .env
   gem "dotenv-rails"
+
+  # To enable email previewing in development
+  gem 'letter_opener_web'
 end
