@@ -1,0 +1,209 @@
+/* ======================
+   Mailer Styles (Email Compatible)
+   ====================== */
+
+/* Fonts */
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #F1EDEE; /* white_smoke */
+  margin: 0;
+  padding: 0;
+  color: #000000; /* black */
+}
+
+/* Container */
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #FFFFFF; /* white background for content */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Headings */
+.page_title {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Text */
+.text_black {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #000000;
+  font-size: 14px;
+}
+
+.text_black_small {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #000000;
+  font-size: 13px;
+}
+
+.text_black_large {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #000000;
+  font-size: 18px;
+}
+
+.text_bold_black {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.text_bold_black_small {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #000000;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.text_white {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #F1EDEE;
+  font-size: 14px;
+}
+
+.text_white_small {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #F1EDEE;
+  font-size: 13px;
+}
+
+.text_white_large {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #F1EDEE;
+  font-size: 18px;
+}
+
+.text_bold_white {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #F1EDEE;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.text_bold_white_small {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #000000;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.text_gray {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #959595;
+  font-size: 14px;
+}
+
+.text_gray_small {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #959595;
+  font-size: 13px;
+}
+
+.text_bold_gray {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #959595;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.text_bold_gray_small {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #959595;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.text_bold_cordovan {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #912F40;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.text_bold_cordovan_small {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #912F40;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Links */
+.links {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: underline;
+  color: #F1EDEE;
+}
+
+.links_black {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: underline;
+  color: #000000;
+}
+
+/* Buttons */
+.button_blue_border {
+  background-color: #13293D; /* prussian_blue */
+  color: #F1EDEE; /* white_smoke */
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.button_white_border {
+  background-color: #F1EDEE;
+  color: #000000;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 16px;
+  text-decoration: none;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Layout helpers */
+.flex_column {
+  display: block; /* flex often breaks in emails */
+}
+
+.flex_column_center {
+  display: block;
+  text-align: center;
+}
+
+.flex_column_justify_center {
+  display: block;
+  text-align: center;
+}
+
+.flex_row {
+  display: block; /* use block for safe layout in emails */
+}
+
+.flex_row_center {
+  display: block;
+  text-align: center;
+}
+
+.flex_row_justify_center {
+  display: block;
+  text-align: center;
+}

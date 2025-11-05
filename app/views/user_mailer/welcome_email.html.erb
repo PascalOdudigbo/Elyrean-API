@@ -1,81 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Basic email styling for better readability */
-      body {
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.6;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-      }
-      .container {
-        max-width: 600px;
-        margin: 20px auto;
-        background-color: #ffffff;
-        padding: 20px 30px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      .header {
-        text-align: center;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #eee;
-      }
-      .header h1 {
-        margin: 0;
-        color: #007bff; /* Example brand color */
-      }
-      .content {
-        padding: 20px 0;
-      }
-      .button {
-        display: inline-block;
-        background-color: #007bff;
-        color: #ffffff !important;
-        padding: 12px 24px;
-        text-decoration: none;
-        border-radius: 5px;
-        margin-top: 20px;
-      }
-      .footer {
-        text-align: center;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-        font-size: 12px;
-        color: #777;
-      }
+    <meta charset="UTF-8" />
+    <style type="text/css">
+      <%= File.read(Rails.root.join("app/assets/stylesheets/mailer_email.scss")) %>
     </style>
   </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <h1>Welcome to <%= @app_name %>!</h1>
-      </div>
-      <div class="content">
-        <p>Hello <%= @user.email %>,</p>
+  <body style="background-color: #F1EDEE; font-family: 'Inter', Arial, sans-serif; color: #000000; margin: 0; padding: 0;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1EDEE">
+      <tr>
+        <td align="center">
+          <table width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" class="container" style="max-width:600px; border-radius:8px; margin:20px auto; padding:20px;">
+            <tr>
+              <td>
 
-        <p>Thank you for signing up for <%= @app_name %>! We're thrilled to have you join our community.</p>
+                <!-- Title -->
+                <h1 class="page_title">Welcome To The World of <%= @app_name %>!</h1>
 
-        <p>You can now log in and start exploring all the features we have to offer.</p>
+                <p class="text_black">Hello <%= @user.username %>,</p>
 
-        <p style="text-align: center;">
-          <%= link_to 'Go to Your Dashboard', 'https://yourfrontend.com/dashboard', class: 'button' %>
-          <%# Replace with your actual dashboard URL %>
-        </p>
+                <p class="text_black">Thank you for signing up! We're thrilled to have you join our community.</p>
+                <p class="text_black">You can now log in and start exploring all the collections, products, and features we have to offer.</p>
+                <p class="text_black">Please click on the button below to activate your account.</p>
+                <p class="text_black">The activation link <b>expires in 24hrs</b>.</p>
 
-        <p>If you have any questions, feel free to reply to this email.</p>
+                <!-- Secure sign-in link -->
+                <p style="text-align: center; margin: 20px 0;">
+                  <a href="<%= "#{ENV.fetch("FRONTEND_URL")}/?activate=true&token=#{@user_token}" %>" 
+                     class="button_blue_border"
+                     style="background-color:#13293D; color:#F1EDEE; text-decoration:none; padding:10px 16px; border-radius:4px;">
+                    Sign In Here
+                  </a>
+                </p>
 
-        <p>Best regards,<br>The <%= @app_name %> Team</p>
-      </div>
-      <div class="footer">
-        <p>&copy; <%= Time.current.year %> <%= @app_name %>. All rights reserved.</p>
-        <p>You received this email because you signed up for an account on <%= @app_name %>.</p>
-      </div>
-    </div>
+                <p class="text_black"><b><i>Expired link?</i></b><i>Recover account through the forgot password route<i/></p>
+                <p class="text_black">Best regards,<br/>The <%= @app_name %> Team</p>
+
+                <hr style="border:0; border-top:1px solid #959595; margin:20px 0;" />
+
+                <p class="text_gray_small" style="font-size:12px; text-align:center;">
+                  &copy; <%= Time.current.year %> <%= @app_name %>. All rights reserved.<br/>
+                  You received this email because you signed up for an account on <%= @app_name %>.
+                </p>
+
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>

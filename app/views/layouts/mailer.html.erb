@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style>
-      /* Email styles need to be inline */
+    <meta charset="UTF-8">
+    <style type="text/css">
+      <%= File.read(Rails.root.join("app/assets/stylesheets/mailer_email.scss")) %>
     </style>
   </head>
-
   <body>
-    <%= yield %>
+    <%= yield %>  <!-- This is REQUIRED for your mailer view to render -->
   </body>
 </html>

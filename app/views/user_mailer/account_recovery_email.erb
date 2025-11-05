@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style type="text/css">
+      <%= File.read(Rails.root.join("app/assets/stylesheets/mailer_email.scss")) %>
+    </style>
+  </head>
+  <body style="background-color: #F1EDEE; font-family: 'Inter', Arial, sans-serif; color: #000000; margin: 0; padding: 0;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F1EDEE">
+      <tr>
+        <td align="center">
+          <table width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" class="container" style="max-width:600px; border-radius:8px; margin:20px auto; padding:20px;">
+            <tr>
+              <td>
+
+                <!-- Title -->
+                <h1 class="page_title">Account Recovery for <%= @app_name %></h1>
+
+                <p class="text_black">Hello <%= @user.username %>,</p>
+
+                <p class="text_black">
+                  We received a request to reset the password for your <%= @app_name %> account.
+                </p>
+
+                <p class="text_black">
+                  If you made this request, please click the button below to reset your password. 
+                  This link is valid for <b>24 hours</b> for security reasons.
+                </p>
+
+                <!-- Secure password reset link -->
+                <p style="text-align: center; margin: 20px 0;">
+                  <a href="<%= "#{ENV.fetch("FRONTEND_URL")}/account-management/?token=#{@user_token}" %>"
+                     class="button_blue_border"
+                     style="background-color:#13293D; color:#F1EDEE; text-decoration:none; padding:10px 16px; border-radius:4px;">
+                    Reset Password
+                  </a>
+                </p>
+
+                <p class="text_black">
+                  If you did not request a password reset, you can safely ignore this email — your account will remain secure.
+                </p>
+
+                <p class="text_black">Best regards,<br/>The <%= @app_name %> Team</p>
+
+                <hr style="border:0; border-top:1px solid #959595; margin:20px 0;" />
+
+                <p class="text_gray_small" style="font-size:12px; text-align:center;">
+                  &copy; <%= Time.current.year %> <%= @app_name %>. All rights reserved.<br/>
+                  You received this email because a password reset was requested for your account on <%= @app_name %>.
+                </p>
+
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

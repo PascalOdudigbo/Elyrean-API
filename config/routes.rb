@@ -4,7 +4,15 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   resources :roles, only: [:index, :show] # Corrected 'only' syntax
-  resources :users # For a full CRUD API
+  resources :users, only: [:index, :update, :destroy] do # For a full CRUD API
+    collection do
+      post 'login' # POST /users/login for user authentication
+      post 'create_artist_or_staff', to: 'users#create_artist_or_staff' # Business can create artist or staff users
+      patch 'activate', to: 'users#activate' # PATCH /users/activate for account activation via email token
+      get 'me', to: 'users#show' # GET /users/me to fetch current user details
+      post 'account_recovery', to: 'users#account_recovery' # GET /users/account_recovery for password reset email
+    end
+  end
   resources :artists # For managing artist profile
   resources :collections # For managing collections full CRUD API
   resources :genders, only: [:index, :show] # For partial CRUD functionality
@@ -41,6 +49,7 @@ Rails.application.routes.draw do
     resources :returned_items # Nested returned_items under returns
   end
 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -49,5 +58,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener"
 end

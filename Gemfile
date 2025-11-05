@@ -33,7 +33,10 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
-# gem "rack-cors"
+gem "rack-cors"
+
+# JWT token authentication
+gem "jwt"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -50,4 +53,8 @@ group :development, :test do
 
   # To enable email previewing in development
   gem 'letter_opener_web'
+
+  gem 'sassc-rails'   # for SCSS compilation
+  gem 'premailer-rails' # for auto inlining CSS into email HTML
+
 end
