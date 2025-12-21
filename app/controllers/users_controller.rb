@@ -66,8 +66,13 @@ class UsersController < ApplicationController
   # PATCH /users/:id
   def update
     if @user == @current_user || @current_user.role.name == 'business'
+      token = JsonWebToken.encode(user_id: @user.id)
       if @user.update(user_params)
-        render json: @user
+        user_json = @user.as_json(
+        except: [:password_digest, :created_at, :updated_at],
+        include: [:role, :artist_profile, :addresses, :orders, :cart, :wishlist_items]
+      )
+      render json: { user: user_json, token: token }
       else
         render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
       end

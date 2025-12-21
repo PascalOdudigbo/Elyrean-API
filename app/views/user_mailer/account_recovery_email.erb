@@ -30,7 +30,7 @@
 
                 <!-- Secure password reset link -->
                 <p style="text-align: center; margin: 20px 0;">
-                  <a href="<%= "#{ENV.fetch("FRONTEND_URL")}/account-management/?token=#{@user_token}" %>"
+                  <a href="<%= "#{ENV.fetch("FRONTEND_URL")}/account-management/login_and_security?token=#{@user_token}" %>"
                      class="button_blue_border"
                      style="background-color:#13293D; color:#F1EDEE; text-decoration:none; padding:10px 16px; border-radius:4px;">
                     Reset Password

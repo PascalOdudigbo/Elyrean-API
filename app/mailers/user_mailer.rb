@@ -18,7 +18,7 @@ class UserMailer < ApplicationMailer
     @app_name = params[:app_name] || "Elyrean"
 
     def edit_password_reset_url(token:)
-      "#{ENV.fetch("FRONTEND_URL")}/account-management/?token=#{@user_token}"
+      "#{ENV.fetch("FRONTEND_URL")}/account-management/login_and_security?token=#{@user_token}"
     end
 
     mail(to: @user.email, subject: "Password Reset Instructions for #{@app_name}") do |format|

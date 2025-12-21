@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
   before_action :set_user
+  before_action :authenticate_user!, only: [:show, :create, :update, :destroy]
   before_action :set_address, only: [:show, :update, :destroy]
   
   # GET /users/:user_id/addresses/
@@ -17,9 +18,9 @@ class AddressesController < ApplicationController
   def create
     @address = @user.addresses.new(address_params)
     if @address.save
-      render json: @address, status: :created, location: @address
+      render json: @address, status: :created
     else
-      render json: @address.errors, status: :unprocessable_entity
+      render json: { errors: @address.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +29,7 @@ class AddressesController < ApplicationController
     if @address.update(address_params)
       render json: @address
     else
-      render json: @address.errors, status: :unprocessable_entity
+      render json: { errors: @address.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -53,7 +54,7 @@ class AddressesController < ApplicationController
   end
 
   def address_params
-    params.require(:address).premit(:address_line1, :address_line2, :city, :postal_code, :country)
+    params.require(:address).permit(:address_line1, :address_line2, :city, :postal_code, :country)
   end
 
 end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post 'account_recovery', to: 'users#account_recovery' # GET /users/account_recovery for password reset email
     end
   end
+  resources :categories # Full CRUD functionality for categories
   resources :artists # For managing artist profile
   resources :collections # For managing collections full CRUD API
   resources :genders, only: [:index, :show] # For partial CRUD functionality

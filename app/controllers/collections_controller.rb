@@ -1,13 +1,21 @@
 class CollectionsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_business!, except: [:index, :show]
   before_action :set_collection, only: [:show, :update, :destroy]
   
   def index
     @collections = Collection.all
-    render json: @collections, include: [products: {include: [:artist]}]
+    render json: @collections, include: {
+         products: { include: :artist },
+         artists: {}
+       }
   end
 
   def show
-    render json: @collection, include: [products: {include: [:artist]}]
+    render json: @collection, include: {
+         products: { include: :artist },
+         artists: {}
+       }
   end
 
   def create

@@ -1,17 +1,19 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_business!, except: [:index, :show]
   before_action :set_category, only: [:show, :update, :destroy]
 
   def index
     @categories = Category.all
-    render json: @categories, include: :products
+    render json: @categories, include: [:products, :gender]
   end
 
   def show
-    render json: @category, include: :products
+    render json: @category, include: [:products, :gender]
   end
 
   def create
-    @category = Caregory.new(category_params)
+    @category = Category.new(category_params)
     if @category.save
       render json: @category, status: :created, location: @category
     else
@@ -38,7 +40,7 @@ class CategoriesController < ApplicationController
     render json: {error: "Category not found"}, status: :not_found
   end
 
-  def caregory_params
+  def category_params
     params.require(:category).permit(:name, :description, :gender_id, :image, :image_public_id)
   end
 end
